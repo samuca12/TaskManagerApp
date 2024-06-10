@@ -19,7 +19,7 @@ O TaskManagerApp possui algumas falhas intencionais, tanto de lógica quanto de 
 - **Excluir Tarefas**: Remova tarefas que não são mais necessárias.
 
 ## Estrutura do Repositório
-
+```plaintext
 TaskManagerApp/
 ├── TaskManagerApp-Backend/
 │   ├── TaskManagerAPI/
@@ -61,7 +61,7 @@ TaskManagerApp/
 │   ├── package.json
 │   └── yarn.lock
 └── README.md
-
+```
 
 
 
