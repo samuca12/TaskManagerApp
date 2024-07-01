@@ -16,13 +16,27 @@ const TaskList = ({ tasks, onEdit, onDelete }) => (
 );
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center', // Centraliza a lista verticalmente
+    alignItems: 'center',    // Centraliza a lista horizontalmente
+  },
+  listContent: {
+    alignItems: 'center',     // Centraliza os itens na lista horizontalmente
+  },
   taskItem: {
-    flexDirection: 'row',
+    flexDirection: 'center',
     justifyContent: 'space-between',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    backgroundColor: '#f9c2ff', 
+    alignItems: 'center',  // Centraliza o conteúdo verticalmente
+    width: 250,          // Largura do quadrado
+    height: 200,         // Altura do quadrado
+    margin: 50,          // Espaçamento entre os quadrados
+    borderWidth: 2,
+    borderColor: '#ccc',
+    backgroundColor: '#ccc',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
   },
 });
 

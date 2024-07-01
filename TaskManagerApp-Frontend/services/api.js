@@ -1,4 +1,4 @@
-const API_URL = 'sua api';
+const API_URL = 'https://localhost:7081/api/Tasks';
 
 export const fetchTasks = async () => {
   const response = await fetch(API_URL, {

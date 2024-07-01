@@ -18,13 +18,13 @@ namespace TaskManagerAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Task>>> GetTasks()
+        public async Task<ActionResult<IEnumerable<Models.Task>>> GetTasks()
         {
             return Ok(await _taskService.GetTasks());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Task>> GetTask(int id)
+        public async Task<ActionResult<Models.Task>> GetTask(int id)
         {
             var task = await _taskService.GetTask(id);
             if (task == null)
@@ -33,9 +33,10 @@ namespace TaskManagerAPI.Controllers
             }
             return Ok(task);
         }
+     
 
         [HttpPost]
-        public async Task<ActionResult<Task>> PostTask(Task task)
+        public async Task<ActionResult<Models.Task>> PostTask(Models.Task task)
         {
             var createdTask = await _taskService.AddTask(task);
             return CreatedAtAction(nameof(GetTask), new { id = createdTask.Id }, createdTask);
@@ -48,5 +49,13 @@ namespace TaskManagerAPI.Controllers
             await _taskService.DeleteTask(id);
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTask (Models.Task task, int id)
+        {
+           var updateTask = await _taskService.UpdateTask(task, id);
+            return NoContent();
+        }
+
     }
+
 }

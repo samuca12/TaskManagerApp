@@ -8,22 +8,33 @@ const TaskForm = ({ onSubmit, initialValues = { id: null, title: '', description
   const [status, setStatus] = useState(initialValues.status);
   const [dueDate, setDueDate] = useState(initialValues.dueDate);
 
-  
   useEffect(() => {
     setId(initialValues.id);
     setTitle(initialValues.title);
     setDescription(initialValues.description);
     setStatus(initialValues.status);
     setDueDate(initialValues.dueDate);
-  }, []);
+  }, [initialValues]); // Dependência adicionada
 
-  
   const handleSubmit = () => {
     if (!title) {
       alert('Title is required');
       return;
     }
-    const taskData = id ? { id, title, description, status, dueDate } : { title, description, status, dueDate };
+
+    // Validação da data (exemplo simples)
+    if (dueDate && !/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) {
+      alert('Invalid date format. Please use YYYY-MM-DD.');
+      return;
+    }
+
+    const taskData = { 
+      ...(id && { id }), // Inclui o ID somente se existir
+      title, 
+      description, 
+      status, 
+      dueDate 
+    };
     onSubmit(taskData);
   };
 
@@ -33,7 +44,7 @@ const TaskForm = ({ onSubmit, initialValues = { id: null, title: '', description
         <TextInput
           style={styles.input}
           placeholder="ID"
-          value={id.toString()}
+          value={id.toString()} // Converte ID para string
           onChangeText={setId}
           editable={false}
         />
@@ -42,7 +53,8 @@ const TaskForm = ({ onSubmit, initialValues = { id: null, title: '', description
         style={styles.input}
         placeholder="Title"
         value={title}
-        onChangeText={(text) => setTitle(text)} 
+        onChangeText={setTitle} 
+      />
       <TextInput
         style={styles.input}
         placeholder="Description"

@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using TaskManagerAPI.Models;
+﻿
+
+
+
+
 
 namespace TaskManagerAPI.Services
 {
     public interface ITaskService
     {
-        Task<IEnumerable<Task>> GetTasks();
-        Task<Task> GetTask(double id);
-        Task<Task> AddTask(Task task);
-        Task DeleteTask(int id);
+        Task<Models.Task> AddTask(Models.Task task);
+        Task<Models.Task> DeleteTask(int id);
+        Task<Models.Task> GetTask(int id);
+        Task<IEnumerable<Models.Task>> GetTasks();
+        Task<bool> UpdateTask(Models.Task task, int id);
     }
 }

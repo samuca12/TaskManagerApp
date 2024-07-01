@@ -14,27 +14,34 @@ namespace TaskManagerAPI.Services
             _taskRepository = taskRepository;
         }
 
-        public async Task<IEnumerable<Task>> GetTasks()
+        public async Task<IEnumerable<Models.Task>> GetTasks()
         {
             return await _taskRepository.GetTasks();
         }
 
-        public async Task<Task> GetTask(int id)
+        public async Task<Models.Task> GetTask(int id)
         {
             return await _taskRepository.GetTask(id);
         }
 
-        public async Task<Task> AddTask(Task task)
+        public async Task<Models.Task> AddTask(Models.Task task)
         {
-            if (string.IsNullOrEmpty(task.Title)) 
+            if (string.IsNullOrEmpty(task.Title))
                 throw new ArgumentException("Title cannot be null or empty");
 
             return await _taskRepository.AddTask(task);
         }
 
-        public async Task DeleteTask(int id)
+        public async Task<Models.Task> DeleteTask(int id)
         {
-            await _taskRepository.DeleteTask(id);
+            return await _taskRepository.DeleteTask(id);
         }
+        public async Task<bool> UpdateTask(Models.Task model,int id)
+        {
+            model.Id = id;
+            return await _taskRepository.UpdateTask(model);
+        }
+
+
     }
 }
